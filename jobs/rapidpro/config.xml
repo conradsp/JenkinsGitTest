@@ -52,9 +52,8 @@
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-cp settings-sample.env settings.env
 
-docker-compose -v &amp;&amp; docker-machine -v
+docker -v &amp;&amp; docker-compose -v &amp;&amp; docker-machine -v
 
 MACHINE_NAME=$ORG_ID&quot;-rapidpro&quot;
  
