@@ -72,6 +72,10 @@ docker-machine start $MACHINE_NAME || echo &quot;container started&quot;
 
 IPADDRESS=&quot;$(docker-machine ip $MACHINE_NAME)&quot;
 
+sed -i &quot;s/DOMAIN_NAME=.*/DOMAIN_NAME=$IPADDRESS/&quot; docker-compose.yml
+sed -i &quot;s/ALLOWED_HOSTS=.*/ALLOWED_HOSTS=$IPADDRESS/&quot; docker-compose.yml
+sed -i &quot;s/TEMBA_HOST=.*/TEMBA_HOST=$IPADDRESS/&quot; docker-compose.yml
+
 eval $(docker-machine env --shell sh $MACHINE_NAME)
  
 # build
