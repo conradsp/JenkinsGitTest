@@ -62,7 +62,7 @@ docker-machine stop $MACHINE_NAME || {
   docker-machine rm -y $MACHINE_NAME || echo &quot;Nothing to destroy&quot;
   echo &quot;creating new container&quot;
   
-  docker-machine create --driver digitalocean --digitalocean-access-token $AUTH_TOKEN --digitalocean-size 4gb --digitalocean-tags t4dlaunched $MACHINE_NAME
+  docker-machine create --driver digitalocean --digitalocean-access-token $AUTH_TOKEN --digitalocean-size 8gb --digitalocean-tags t4dlaunched $MACHINE_NAME
   #docker-machine create --driver amazonec2 --amazonec2-access-key $AUTH_TOKEN --amazonec2-secret-key $SECRET_KEY $MACHINE_NAME
 }
  
