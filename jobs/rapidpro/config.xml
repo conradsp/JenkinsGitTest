@@ -76,7 +76,7 @@ eval $(docker-machine env --shell sh $MACHINE_NAME)
  
 # build
 docker-compose pull
-
+docker-compose build
 docker-compose up -d
 
 # The last line of the build output should always be the docker-machine IP
