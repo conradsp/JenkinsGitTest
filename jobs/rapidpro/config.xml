@@ -1,15 +1,70 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.scm.NullSCM"/>
-  <canRoam>false</canRoam>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.10.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/rapidpro/rapidpro-docker.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>docker-compose -v &amp;amp;&amp;amp; docker-machine -v
+
+MACHINE_NAME=$ORG_ID&amp;quot;-rapidpro&amp;quot;
+ 
+# set-up: clean up any previous machine failures
+docker-machine stop $MACHINE_NAME || {
+  docker-machine rm -y $MACHINE_NAME || echo &amp;quot;Nothing to destroy&amp;quot;
+  echo &amp;quot;creating new container&amp;quot;
+  if [$PROVIDER == &amp;quot;DO&amp;quot;]; then
+  	docker-machine create --driver digitalocean --digitalocean-access-token $AUTH_TOKEN --digitalocean-size 8gb $MACHINE_NAME
+  else
+  	docker-machine create --driver amazonec2 --amazonec2-access-key $AUTH_TOKEN --amazonec2-secret-key $SECRET_KEY $MACHINE_NAME
+  fi
+}
+ 
+# use docker-machine to create and configure &amp;apos;test&amp;apos; environment
+# add a -D (debug) if having issues
+docker-machine start $MACHINE_NAME || echo &amp;quot;container started&amp;quot;
+
+IPADDRESS=&amp;quot;$(docker-machine ip $MACHINE_NAME)&amp;quot;
+
+sed -i &amp;quot;s/^BASE_URL=.*/BASE_URL=http:\/\/$IPADDRESS/&amp;quot; settings.env
+sed -i &amp;quot;s/^VIRTUAL_HOST=.*/VIRTUAL_HOST=$IPADDRESS/&amp;quot; settings.env
+
+eval $(docker-machine env --shell sh $MACHINE_NAME)
+ 
+# build
+docker-compose pull
+
+docker-compose up -d
+
+# The last line of the build output should always be the docker-machine IP
+# This will be used by the T4D app to give the user a link
+
+echo &amp;quot;openlmis instance&amp;quot;
+docker-machine ip $MACHINE_NAME&lt;/command&gt;</command>
+    </hudson.tasks.Shell>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
