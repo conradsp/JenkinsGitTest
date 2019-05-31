@@ -96,7 +96,7 @@ WAITING=1
 echo $WAITING
 while [ $WAITING -gt 0 ]; do 
 sleep 5s
-WAITING=$(curl http://159.203.119.83:8500/v1/internal/ui/services?dc=dc1 | python -c &quot;exec(\&quot;import json,sys\nobj=json.load(sys.stdin)\ni=0\nfor item in obj:  i += item[&apos;ChecksCritical&apos;]\nprint i\&quot;)&quot;)
+WAITING=$(curl http://$IPADDRESS:8500/v1/internal/ui/services?dc=dc1 | python -c &quot;exec(\&quot;import json,sys\nobj=json.load(sys.stdin)\ni=0\nfor item in obj:  i += item[&apos;ChecksCritical&apos;]\nprint i\&quot;)&quot;)
 echo $WAITING
 done
 
