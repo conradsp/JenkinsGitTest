@@ -37,7 +37,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>echo &quot;mifos instance&quot;
-echo &quot;123.32.111.33&quot;</command>
+123.32.111.33</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
