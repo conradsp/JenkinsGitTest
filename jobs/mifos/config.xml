@@ -36,7 +36,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>echo &quot;openlmis instance&quot;
+      <command>echo &quot;mifos instance&quot;
 echo &quot;123.32.111.33&quot;</command>
     </hudson.tasks.Shell>
   </builders>
