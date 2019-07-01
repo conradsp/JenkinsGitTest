@@ -81,8 +81,12 @@ docker-compose -f docker-compose.manage.yml up -d
 # The last line of the build output should always be the docker-machine IP
 # This will be used by the T4D app to give the user a link
 
-echo &quot;opensrp instance: &quot;
-docker-machine ip $MACHINE_NAME</command>
+echo &quot;iHRIS instance: &quot;
+docker-machine ip $MACHINE_NAME
+
+docker exec -it ihris bash
+cd manage
+php index.php --update=1</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
