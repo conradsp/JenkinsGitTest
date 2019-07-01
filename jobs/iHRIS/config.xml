@@ -81,7 +81,7 @@ docker-compose -f docker-compose.manage.yml up -d
 # The last line of the build output should always be the docker-machine IP
 # This will be used by the T4D app to give the user a link
 
-docker exec -i ihris sh -c &apos;cd manage &amp;&amp; php index.php --update=1&apos;
+docker exec -i ihris sh -c &apos;cd manage &amp;&amp; php index.php --update=1; exit $?&apos;
 echo &quot;iHRIS instance: &quot;
 docker-machine ip $MACHINE_NAME</command>
     </hudson.tasks.Shell>
