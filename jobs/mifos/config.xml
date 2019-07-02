@@ -65,8 +65,6 @@ docker-machine stop $MACHINE_NAME || {
   docker-machine create --driver digitalocean --digitalocean-access-token $AUTH_TOKEN --digitalocean-size 4gb --digitalocean-tags t4dlaunched $MACHINE_NAME
   #docker-machine create --driver amazonec2 --amazonec2-access-key $AUTH_TOKEN --amazonec2-secret-key $SECRET_KEY $MACHINE_NAME
 }
-
-docker-machine mount ./
  
 # use docker-machine to create and configure &apos;test&apos; environment
 # add a -D (debug) if having issues
