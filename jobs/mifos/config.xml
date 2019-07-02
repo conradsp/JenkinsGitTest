@@ -74,12 +74,13 @@ docker-machine start $MACHINE_NAME || echo &quot;container started&quot;
 eval $(docker-machine env --shell sh $MACHINE_NAME)
  
 # build
-cd fineract
+
 docker-compose build
 
 docker-compose up -d
 
-
+cd fineract
+docker-machine scp -r fineract-db DIAL-mifos:/var/jenkins_home/workspace/mifos/fineract
 
 # The last line of the build output should always be the docker-machine IP
 # This will be used by the T4D app to give the user a link
