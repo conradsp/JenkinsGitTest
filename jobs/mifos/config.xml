@@ -36,7 +36,7 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>develop</name>
+        <name>*/master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -72,6 +72,9 @@ docker-machine start $MACHINE_NAME || echo &quot;container started&quot;
 
 
 eval $(docker-machine env --shell sh $MACHINE_NAME)
+
+git clone https://github.com/apache/fineract
+cd fineract
  
 # build
 docker-compose build
