@@ -80,7 +80,7 @@ docker-compose build
 
 docker-compose up -d
 
-docker-machine scp -r fineract-db DIAL-mifos:/var/jenkins_home/workspace/mifos/fineract
+docker-machine scp -r fineract-db $MACHINE_NAME:/var/jenkins_home/workspace/mifos/fineract
 
 sleep 30s
 
