@@ -74,6 +74,7 @@ docker-machine start $MACHINE_NAME || echo &quot;container started&quot;
 eval $(docker-machine env --shell sh $MACHINE_NAME)
  
 # build
+cd fineract
 docker-compose build --no-cache
 
 docker-compose up -d
