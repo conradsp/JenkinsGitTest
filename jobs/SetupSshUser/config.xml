@@ -32,7 +32,13 @@
     <hudson.tasks.Shell>
       <command>eval $(docker-machine env $ENV_NAME)
 
-docker-machine ssh $ENV_NAME echo $PUBLIC_KEY &gt;&gt; ~/.ssh/authorized_keys
+echo &quot;#!/bin/bash&quot; &gt; test.sh
+echo &quot;echo&quot; $PUBLIC_KEY &gt;&gt; ~/.ssh/authorized_keys&apos; &gt;&gt; test.sh
+chmod 775 test.sh
+
+docker-machine scp ./test.sh $ENV_NAME:~/test.sh
+
+docker-machine ssh $ENV_NAME ./test.sh
 
 </command>
     </hudson.tasks.Shell>
