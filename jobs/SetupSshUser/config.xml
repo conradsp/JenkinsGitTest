@@ -33,7 +33,7 @@
       <command>eval $(docker-machine env $ENV_NAME)
 
 echo &quot;#!/bin/bash&quot; &gt; test.sh
-echo &quot;echo&quot; $PUBLIC_KEY &gt;&gt; ~/.ssh/authorized_keys&apos; &gt;&gt; test.sh
+echo &quot;echo&quot; $PUBLIC_KEY &quot;&gt;&gt; ~/.ssh/authorized_keys&quot; &gt;&gt; test.sh
 chmod 775 test.sh
 
 docker-machine scp ./test.sh $ENV_NAME:~/test.sh
