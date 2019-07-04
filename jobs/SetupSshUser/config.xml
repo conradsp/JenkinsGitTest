@@ -34,7 +34,7 @@
       <command>eval $(docker-machine env $ENV_NAME)
 
 echo &apos;#!/bin/bash&apos; &gt; sshUser.sh
-printf &apos;%s\n&apos; &quot;echo $PUBLIC_KEY &gt;&gt; ~/.ssh/authorized_keys&quot; &gt;&gt; sshUser.sh
+echo &quot;echo $PUBLIC_KEY | tee -a ~/.ssh/authorized_keys&quot; &gt;&gt; sshUser.sh
 chmod 775 sshUser.sh
 
 docker-machine scp ./test.sh $ENV_NAME:~/sshUser.sh
