@@ -31,7 +31,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>eval $(docker-machine env $ENV_NAME)
+      <command>#!/bin/bash
+eval $(docker-machine env $ENV_NAME)
 
 echo &apos;#!/bin/bash&apos; &gt; sshUser.sh
 echo &quot;echo $PUBLIC_KEY &gt;&gt; ~/.ssh/authorized_keys&quot; &gt;&gt; sshUser.sh
