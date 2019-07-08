@@ -90,8 +90,9 @@ cd ..
 git clone https://github.com/openMF/community-app.git
 cd community-app
 apt-get install -y npm
-npm install -g bower grunt-cli
-bower install
+npm install -g bower grunt-cli rubygems
+gem install bundler
+bower install --allow-root
 npm install
 bundle install
 grunt serve&amp;
