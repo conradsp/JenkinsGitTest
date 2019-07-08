@@ -82,16 +82,6 @@ docker-compose up -d
 
 docker-machine scp -r fineract-db $MACHINE_NAME:/var/jenkins_home/workspace/mifos/fineract
 
-# Now build the client/community app
-
-eval $(docker-machine env --shell sh $MACHINE_NAME)
-
-cd ..
-git clone https://github.com/conradsp/community-app.git
-cd community-app
-
-docker-compose build
-docker-compose up -d
 
 # The last line of the build output should always be the docker-machine IP
 # This will be used by the T4D app to give the user a link
