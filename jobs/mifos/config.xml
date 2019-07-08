@@ -84,6 +84,8 @@ docker-machine scp -r fineract-db $MACHINE_NAME:/var/jenkins_home/workspace/mifo
 
 # Now build the client/community app
 
+eval $(docker-machine env --shell sh $MACHINE_NAME)
+
 cd ..
 git clone https://github.com/openMF/community-app.git
 cd community-app
