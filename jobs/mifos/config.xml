@@ -82,7 +82,17 @@ docker-compose up -d
 
 docker-machine scp -r fineract-db $MACHINE_NAME:/var/jenkins_home/workspace/mifos/fineract
 
-sleep 30s
+# Now build the client/community app
+
+cd ..
+git clone https://github.com/openMF/community-app.git
+cd community-app
+apt install nodejs
+npm install -g bower grunt-cli
+bower install
+npm install
+bundle install
+grunt serve&amp;
 
 # The last line of the build output should always be the docker-machine IP
 # This will be used by the T4D app to give the user a link
