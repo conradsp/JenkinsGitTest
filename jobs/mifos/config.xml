@@ -87,7 +87,7 @@ docker-machine scp -r fineract-db $MACHINE_NAME:/var/jenkins_home/workspace/mifo
 cd ..
 git clone https://github.com/openMF/community-app.git
 cd community-app
-apt install nodejs
+apt-get install -y nodejs
 npm install -g bower grunt-cli
 bower install
 npm install
