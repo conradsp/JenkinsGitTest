@@ -82,6 +82,7 @@ docker-compose up -d
 
 docker-machine scp -r fineract-db $MACHINE_NAME:/var/jenkins_home/workspace/mifos/fineract
 
+sleep 30s
 
 # The last line of the build output should always be the docker-machine IP
 # This will be used by the T4D app to give the user a link
