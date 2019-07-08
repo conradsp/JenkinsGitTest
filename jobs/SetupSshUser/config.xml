@@ -32,7 +32,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-eval $(docker-machine env $ENV_NAME)
+eval $(docker-machine env --shell sh $ENV_NAME)
 
 echo &quot;#!/bin/bash&quot; &gt; sshUser.sh
 echo &quot;echo $PUBLIC_KEY &gt;&gt; ~/.ssh/authorized_keys&quot; &gt;&gt; sshUser.sh
