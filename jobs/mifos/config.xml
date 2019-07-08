@@ -87,15 +87,10 @@ docker-machine scp -r fineract-db $MACHINE_NAME:/var/jenkins_home/workspace/mifo
 eval $(docker-machine env --shell sh $MACHINE_NAME)
 
 cd ..
-git clone https://github.com/openMF/community-app.git
+git clone https://github.com/conradsp/community-app.git
 cd community-app
-apt-get install -y npm
-npm install -g bower grunt-cli rubygems
-gem install bundler
-bower install --allow-root
-npm install
-bundle install
-grunt serve&amp;
+
+docker build -f Dockerfile .
 
 # The last line of the build output should always be the docker-machine IP
 # This will be used by the T4D app to give the user a link
