@@ -21,7 +21,7 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/master</name>
+        <name>*/JenkinsCI</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -36,7 +36,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>rails test</command>
+      <command>docker-compose -f docker-compose.ci.yml build
+docker-compose -f docker-compose.ci.yml up --force-recreate --abort-on-container-exit
+docker-compose -f docker-compose.ci.yml down -v
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
